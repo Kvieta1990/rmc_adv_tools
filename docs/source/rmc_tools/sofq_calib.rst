@@ -1,3 +1,5 @@
+.. _sofq_calib:
+
 SofQ Calibration
 ================
 
@@ -8,3 +10,6 @@ Then the GUI can be simply installed by executing,
 .. code-block:: sh
 
     conda install -c apw247 sofq_calib
+
+Detailed instruction about how to use this program has been inluced in the
+`Help` menu of the GUI and will not be reproduced here.
