@@ -50,12 +50,14 @@ atexit.register(save_history)
 def main():
 
     try:
-        rmc6fFN = sys.argv[1]
-    except IndexError:
-        print("\nUsage: python bulk_shells.py RMC6F_CONFIG")
+        rmc6fFN = os.path.join(sys.argv[1], sys.argv[2])
+        if sys.argv[2] == '' or sys.argv[2] is None:
+            print("\nRMC6F configuration file needs to be provided.")
+            sys.exit()
+    except (OSError, IndexError):
+        print("RMC6F configuration file needs to be provided.")
         sys.exit()
-
-    if sys.argv[1] == "-version" or sys.argv[1] == "-v" or sys.argv[1] == "-V":
+    if sys.argv[2] == "-version" or sys.argv[2] == "-v" or sys.argv[2] == "-V":
         print("===================")
         print("Version " + version)
         print("===================")

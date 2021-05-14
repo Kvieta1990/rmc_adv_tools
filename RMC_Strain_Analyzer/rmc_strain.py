@@ -174,11 +174,11 @@ def doc():
 
 if __name__ == '__main__':
 
-    if (len(sys.argv) == 1) or (len(sys.argv) == 2 and sys.argv[1] == '-v'):
+    if (len(sys.argv) == 2) or (len(sys.argv) == 3 and sys.argv[2] == '-v'):
         print("\nVersion: " + str(version))
         print("Features: ", features)
         sys.exit()
-    elif len(sys.argv) == 2 and sys.argv[1] == '-h':
+    elif len(sys.argv) == 3 and sys.argv[2] == '-h':
         print(doc.__doc__)
         sys.exit()
 
@@ -206,7 +206,9 @@ if __name__ == '__main__':
         print("Only 'rms' and 'dgt' analyses are supported.")
         sys.exit()
 
-    wk_dir = os.path.dirname(os.path.abspath(__file__))
+    # wk_dir = os.path.dirname(os.path.abspath(__file__))
+    wk_dir = sys.argv[1]
+    print(wk_dir)
     if strain_analysis_type == "dgt":
         if "-r" in sys.argv:
             ref_config_pos = int(sys.argv.index("-r"))
