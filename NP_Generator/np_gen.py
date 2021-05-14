@@ -1,4 +1,5 @@
-"""Nanoparticle generator
+"""
+Nanoparticle generator
 ======================
 
 This routine provides capability of generating nanoparticle(s) from

@@ -1,1 +1,0 @@
-.. automodule:: NP_Shells.bulk_shells
