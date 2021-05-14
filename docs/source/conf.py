@@ -15,9 +15,9 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../../../rmc_adv_tools'))
-# sys.path.append(os.path.join(os.path.dirname(__file__), '../../../rmc_adv_tools/RMC_Strain_Analyzer'))
-# sys.path.append(os.path.join(os.path.dirname(__file__), '../../../rmc_adv_tools/rmc_tools/'))
-# sys.path.append(os.path.join(os.path.dirname(__file__), '../../../rmc_adv_tools'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../../rmc_adv_tools/RMC_Strain_Analyzer'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../../rmc_adv_tools/rmc_tools/'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../../rmc_adv_tools'))
 
 
 # -- Project information -----------------------------------------------------

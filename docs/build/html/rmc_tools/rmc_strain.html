@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>&lt;no title&gt; &mdash; Advanced-Tools-RMCProfile rc-0.1 documentation</title>
+  <title>RMC config strain analyzer &mdash; Advanced-Tools-RMCProfile rc-0.1 documentation</title>
   
 
   
@@ -88,10 +88,17 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rmc_modules.html">RMC Modules</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rmc_tools.html">RMC Tools</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../rmc_tools.html">RMC Tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="np_gen.html">Nanoparticle generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="np_lin_analyzer.html">Nanoparticle linear expansion analyzer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="np_shells.html">Nanoparticle to shells</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bulk_shells.html">Bulk to shells</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">RMC config strain analyzer</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -142,7 +149,7 @@
         
           <li><a href="../rmc_tools.html">RMC Tools</a> &raquo;</li>
         
-      <li>&lt;no title&gt;</li>
+      <li>RMC config strain analyzer</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -161,7 +168,38 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
+  <span class="target" id="module-RMC_Strain_Analyzer.rmc_strain"></span><div class="section" id="rmc-config-strain-analyzer">
+<h1>RMC config strain analyzer<a class="headerlink" href="#rmc-config-strain-analyzer" title="Permalink to this headline">¶</a></h1>
+<p>Python script for strain field analysis for RMC6F configuration. The script has
+been embodied into the RMCProfile release package so that it can be simply
+executed as,</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>rmc_strain RMC6F_CONFIG <span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p>The list of [OPTIONS] is presented below,</p>
+<dl class="option-list">
+<dt><kbd><span class="option">-h</span></kbd></dt>
+<dd><p>Show current help information.</p>
+</dd>
+<dt><kbd><span class="option">-i</span></kbd></dt>
+<dd><p>[RMC6F config name] Input RMC6F configuration.</p>
+</dd>
+<dt><kbd><span class="option">-t</span></kbd></dt>
+<dd><p>[rms/dgt] Analysis type.</p>
+<dl class="option-list">
+<dt><kbd><span class="option">-r</span></kbd></dt>
+<dd><p>[Reference RMC6F config file] If ‘dgt’ analysis is selected,
+one needs to provide the reference RMC6F configuration for
+computing the deformation gradient tensor.</p>
+</dd>
+</dl>
+</dd>
+<dt><kbd><span class="option">-v</span></kbd></dt>
+<dd><p>Show version information.</p>
+</dd>
+</dl>
+</div>
+
 
            </div>
            
