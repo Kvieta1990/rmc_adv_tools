@@ -150,7 +150,7 @@ def doc():
 
     Python script for strain field analysis for RMC6F configuration.
 
-    Usage: python rmc_strain.py [OPTIONS]
+    Usage: rmc_strain [OPTIONS]
 
     Options:
 
