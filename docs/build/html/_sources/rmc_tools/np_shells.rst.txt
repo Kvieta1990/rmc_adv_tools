@@ -1,0 +1,1 @@
+.. automodule:: NP_Shells.np_shells

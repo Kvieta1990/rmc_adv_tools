@@ -1,0 +1,1 @@
+.. automodule:: NP_Generator.np_gen
