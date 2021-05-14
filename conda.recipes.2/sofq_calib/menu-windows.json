@@ -1,0 +1,12 @@
+{
+    "menu_name": "Anaconda${PY_VER} ${PLATFORM}",
+    "menu_items":
+	[
+		{
+			"name": "SofQ_Calib",
+			"pywscript" : "${PYTHON_SCRIPTS}/sofq_calib-script.pyw",
+			"icon": "${MENU_DIR}/icon.ico",
+			"desktop": true
+		}
+    ]
+}

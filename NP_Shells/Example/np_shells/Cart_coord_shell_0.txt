@@ -1,0 +1,15 @@
+ RN - reference number (a column in rmc6f file indicating an atom type
+ in the unit cell)
+ XYZ - Cartesian coordinates of the atom reduced to unit cell in Angstrom
+ dXdYdZ - diplacements from the average positions in Angstrom
+ Nx,Ny,Nz - unit cell indices in the box
+ RN    X    Y     Z   dX  dY  dZ Nx  Ny  Nz
+  1    0.00000    0.00000    0.00000   0.00000   0.00000   0.00000 28 28 28
+  2    4.06957    4.06957    4.06957   0.00000   0.00000   0.00000 27 27 27
+  3    4.06957    4.06957    1.35641   0.00000   0.00000   0.00000 27 27 28
+  6    4.06957    1.35641    4.06957   0.00000   0.00000   0.00000 27 28 27
+  5    4.06957    1.35641    1.35641   0.00000   0.00000   0.00000 27 28 28
+  9    1.35641    4.06957    4.06957   0.00000   0.00000   0.00000 28 27 27
+  8    1.35641    4.06957    1.35641   0.00000   0.00000   0.00000 28 27 28
+ 11    1.35641    1.35641    4.06957   0.00000   0.00000   0.00000 28 28 27
+ 12    1.35641    1.35641    1.35641   0.00000   0.00000   0.00000 28 28 28

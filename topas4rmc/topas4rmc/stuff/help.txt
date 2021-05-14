@@ -1,0 +1,191 @@
+====================================
+This is a brief documentation about current program.
+====================================
+
+*****************************************************************************
+Since the topas input file is with quite free format, we do expect 
+failures processing certain files. Report to the author for any 
+encountered problems at:
+--------------------------
+zhangy3@ornl.gov
+--------------------------
+*****************************************************************************
+
+---------------------------
+Tab-1: Profile Preparation
+-----------------------------------------------------------------------------
+This tab is for preparing the tabulated Topas profile data. 
+-----------------------------------------------------------------------------
+
+*****************************************************************************
+BEFORE USING IT, one needs to get a reasonally good fit with either
+Rietveld or Pawley. However, reliable scale factor can only be 
+obtained through Rietveld refinement. Therefore, if one does want
+to use Pawley refinement as the input, one has to have a reliable 
+estimation for the scale factor through Rietveld refinement ANYWAY.
+*****************************************************************************
+
+Instructions
+-----------------------------------------------------------------------------
+1. In the input box, specify the refinement type ('1' for Rietveld, 
+'2' for Pawley) and minimum d-spacing (separated by ';'). Here the 
+Rietveld refinement is strongly recommended since it can provide the 
+necessary scale factor which will be used by RMCProfile. For the 
+minimum d-spacing input, if there are multiple data sections, one 
+needs to specify multiple values separated by commas. The third 
+input concerns whether to use a fine precision when outputing the 
+tabulated profile. Usually, using the default '0' (with the default
+precision) option should be fine. In case one needs a fine precision, 
+use '1' instead. The purpose of such an option is that when the 
+intensity of Bragg peaks is weak, using coarse precision will tend
+to introduce rounding-up uncertainties.
+
+2. Locate the installation directory of Topas, by pressing the 
+'Topas Installation Directory' button.
+
+3. Locate the Topas input file for the Pawley fitting by pressing the 
+'Topas Input File' button.
+
+PS: If profile extraction has ever been executed successfully before,
+one can press the 'Load history' button to load the history file 
+(generated automatically by the program if executed successfully, 
+which will be located in the same place where the main Topas input
+file is). In that case, topas executable, main topas input file 
+together with the last occurrence of input box values will be imported.
+
+4. Press the 'Extract Profile' button to extract the profiles.
+
+PS: In any case, one can press the 'Abort' button to stop currently
+running process.
+
+5. Press 'Check Set-up' button to check the setup. The set-up checking
+output will also be saved to 'calc_check.dat' for later inspection.
+
+6. All output will be printed out in the text box below for user's 
+reference.
+
+7. The tabulated profiles will be saved into files with name of the 
+following format - "STEM_NAME.hkl#" where 'STEM_NAME' refers to 
+the stem name of the specified topas input file and '#' refers 
+to the index of the corresponding data section. Similarly, the 
+background, Bragg experimental data will be saved to 
+'STEM_NAME.back#' and 'STEM_NAME.bragg#', respectively. The 
+'.hkl' file will also be generated which contains the hkl 
+searching limit and step, which will be used later by RMCProfile.
+-----------------------------------------------------------------------------
+
+------------------------------
+Tab-2: Resolution Matrix-CW
+-----------------------------------------------------------------------------
+This tab is for generating the resolution matrix for constant wavelength 
+datasets, including both X-ray and neutron data, if one does have CW 
+neutron total scattering data in the future.
+-----------------------------------------------------------------------------
+
+*****************************************************************************
+BEFORE USING IT, one needs to get a reasonally good Pawley fit for the 
+Bragg data for standard samples (e.g. Si) which is measured together
+with user's samples.
+*****************************************************************************
+
+Instructions
+-----------------------------------------------------------------------------
+1. In the input box, specify the Qmin, Qstep and Qmax. The input 
+values should agree with that used in RMCProfile.
+
+2. Locate the installation directory of Topas, by pressing the 
+'Topas Installation Directory' button.
+
+3. Locate the Topas input file for the Pawley fitting by pressing the 
+'Topas Input File' button.
+
+4. Press the 'Matrix Prep' button to generate the resolution matrix.
+
+5. All output will be printed out in the text box below for user's 
+reference.
+
+6. The generated resolution matrix will be saved to 'res_matrix.dat' 
+file.
+-----------------------------------------------------------------------------
+
+------------------------------
+Tab-3: Resolution Matrix-TOF
+-----------------------------------------------------------------------------
+This tab is for generating the resolution matrix for time-of-flight 
+neutron total scattering data.
+-----------------------------------------------------------------------------
+
+*****************************************************************************
+BEFORE USING IT, one needs to get a reasonally good Rietveld fit for the 
+Bragg data for standard samples (e.g. Si) which is measured together
+with user's samples.
+*****************************************************************************
+
+Instructions
+-----------------------------------------------------------------------------
+1. In the first input box, specify the Qmin, Qstep and Qmax spearated 
+by commas. The input values should agree with that used in RMCProfile. 
+Then, one needs one additional input value for specifying the q-grid type.
+Here, '0' represents the default data grid. Otherwise, the q-grid specified 
+(e.g. 0.005) by user will be used for building up the resolution matrix.
+
+In the second input box, specify the indeces of data sections. Sometimes
+we may want to separate one bank into multiple sections for the 
+refinement and this input box is for such a purpose. To explain the 
+usage, we take the following example "1;2;2,3,4,15.00;5;6". In this 
+example, we have in total 5 banks, where we divide the 3rd bank to 
+two sections. Therefore, in total now we have 6 'xdd' sections in the
+Topas input file. We separate each bank with ';'. Here for the 3rd
+bank, we have several input values separated by ','. The first value
+gives the number of sections (#) we want to divide the bank into, 
+followed by # values specifying the corresponding 'xdd' sections in 
+the Topas input file. Then we should give (#-1) values specifying the
+separation points in order.
+
+In the third box, we specify the input diffc, diffa, zero and the 
+output diffc values, respectively (again, separated by commas). This 
+is for calibrating the shift of Q-space pattern in certain situations.
+
+2. Locate the installation directory of Topas, by pressing the 
+'Topas Installation Directory' button.
+
+3. Locate the Topas input file for the Pawley fitting by pressing the 
+'Topas Input File' button.
+
+PS: If resolution matrix generation has ever been executed 
+successfully before, one can press the 'Load history' button to load 
+the history file (generated automatically by the program if executed 
+successfully, which will be located in the same place where the main 
+Topas input file is). In that case, topas executable, main topas input 
+file together with the last occurrence of input box values will be 
+imported.
+
+4. Press the 'Matrix Prep' button to generate the resolution matrix.
+
+PS: In any case, one can press the 'Abort' button to stop currently
+running process.
+
+5. All output will be printed out in the text box below for user's 
+reference. Meanwhile, we the preparation is going, the resolution
+matrix will be plotted dynamically.
+
+6. The generated resolution matrix will be saved to 'res_matrix.dat' 
+file, which contains the matrices for all banks. Users then need to 
+copy this file to the directory where they are going to run RMCProfile.
+
+7. Sometimes when pressing the 'Matrix Prep' button, an error message
+window will pop up complaining about the Qmin is set to too small. 
+In that case, a hint lower limit will be shown in the error message 
+window and the users are required to adjust the Qmin input to be larger
+than the hint value. Also, they should change the lower fitting limit
+in RMCProfile to the same value, accordingly.
+
+8. For the initial Rietveld refinement, it is strongly recommended that
+the scale should not be set to be equal to a defined parameter!
+-----------------------------------------------------------------------------
+
+===============================
+Yuanpeng Zhang @ Wed 15-Jul-20
+ORNL & NIST
+zhangy3@ornl
+===============================

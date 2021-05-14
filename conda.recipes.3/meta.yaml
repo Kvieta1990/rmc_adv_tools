@@ -1,0 +1,38 @@
+package:
+  name: topas4rmc
+  version: 0.0.1
+
+build:
+  number: 10
+
+source:
+  path: d:\Dev\rmc_adv_tools\topas4rmc\
+
+entry_points:
+    - topas4rmc = topas4rmc.topas4rmc:main
+
+osx_is_app: True
+
+app:
+  entry: pythonw -m topas4rmc.topas4rmc
+  icon: tr_icon.ico
+  summary: Prepare Bragg profile for RMC fit.
+
+requirements:
+  build:
+    - wxpython >=4.0.3
+    - numpy
+    - matplotlib >=3.0
+    - scipy
+  run:
+    - python >=3.7.0
+    - wxpython >=4.0.3
+    - matplotlib >=3.0
+    - numpy
+    - scipy
+
+about:
+  home: https://code.ornl.gov/zyroc1990/adv_rmc_tools/tree/master/Topas2RMC
+  license: GPL
+  license_file: LICENSE.txt
+  summary: Tools for preparing Topas Bragg data to be used RMCProfile fitting.

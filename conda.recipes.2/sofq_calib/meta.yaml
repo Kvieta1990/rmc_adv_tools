@@ -1,0 +1,39 @@
+package:
+  name: sofq_calib
+  version: 1.0.0
+
+build:
+  number: 6
+
+source:
+  path: d:\Dev\Utilities\sofq_calib\
+
+entry_points:
+    - sofq_calib = sofq_calib.sofq_calib:main
+
+osx_is_app: True
+
+app:
+  # entry: sofq_calib  [linux]
+  entry: pythonw -m sofq_calib.sofq_calib
+  icon: icon.ico
+  summary: Calibrate SofQ against Bragg
+
+requirements:
+  build:
+    - python >=3.7.0
+    - wxpython >=4.0
+    - numpy
+    - matplotlib >=3.0
+  run:
+    - python >=3.7.0
+    - wxpython >=4.0
+    - numpy
+    - matplotlib >=3.0
+    - menuinst
+
+about:
+  home: https://https://code.ornl.gov/zyroc1990/Utilities/tree/master/sofq_calib
+  license: GPL
+  license_file: LICENSE.txt
+  summary: Tools for calibrating S(Q) against Bragg data.

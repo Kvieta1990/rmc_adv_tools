@@ -1,0 +1,133 @@
+ atom reference_number  X_aver(frac)   Y_aver(frac)   Z_aver(frac)
+         1             0.0000000      0.0000000      0.0000000
+         2             0.7500160      0.7500160      0.7500160
+         3             0.7500160      0.7500160      0.2499840
+         4                   NaN            NaN            NaN
+         5             0.7500160      0.2499840      0.2499840
+         6             0.7500160      0.2499840      0.7500160
+         7                   NaN            NaN            NaN
+         8             0.2499840      0.7500160      0.2499840
+         9             0.2499840      0.7500160      0.7500160
+        10                   NaN            NaN            NaN
+        11             0.2499840      0.2499840      0.7500160
+        12             0.2499840      0.2499840      0.2499840
+ 
+ Atom reference number= 1
+      X         Y        Z          Average Cartesian coordinates (A) 
+   0.00000   0.00000   0.00000
+ 
+                  Uij (A^2)
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+ 
+ 
+ Atom reference number= 2
+      X         Y        Z          Average Cartesian coordinates (A) 
+   4.06957   4.06957   4.06957
+ 
+                  Uij (A^2)
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+ 
+ 
+ Atom reference number= 3
+      X         Y        Z          Average Cartesian coordinates (A) 
+   4.06957   4.06957   1.35641
+ 
+                  Uij (A^2)
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+ 
+ 
+ Atom reference number= 4
+      X         Y        Z          Average Cartesian coordinates (A) 
+       NaN       NaN       NaN
+ 
+                  Uij (A^2)
+            NaN            NaN            NaN
+            NaN            NaN            NaN
+            NaN            NaN            NaN
+ 
+ 
+ Atom reference number= 5
+      X         Y        Z          Average Cartesian coordinates (A) 
+   4.06957   1.35641   1.35641
+ 
+                  Uij (A^2)
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+ 
+ 
+ Atom reference number= 6
+      X         Y        Z          Average Cartesian coordinates (A) 
+   4.06957   1.35641   4.06957
+ 
+                  Uij (A^2)
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+ 
+ 
+ Atom reference number= 7
+      X         Y        Z          Average Cartesian coordinates (A) 
+       NaN       NaN       NaN
+ 
+                  Uij (A^2)
+            NaN            NaN            NaN
+            NaN            NaN            NaN
+            NaN            NaN            NaN
+ 
+ 
+ Atom reference number= 8
+      X         Y        Z          Average Cartesian coordinates (A) 
+   1.35641   4.06957   1.35641
+ 
+                  Uij (A^2)
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+ 
+ 
+ Atom reference number= 9
+      X         Y        Z          Average Cartesian coordinates (A) 
+   1.35641   4.06957   4.06957
+ 
+                  Uij (A^2)
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+ 
+ 
+ Atom reference number=10
+      X         Y        Z          Average Cartesian coordinates (A) 
+       NaN       NaN       NaN
+ 
+                  Uij (A^2)
+            NaN            NaN            NaN
+            NaN            NaN            NaN
+            NaN            NaN            NaN
+ 
+ 
+ Atom reference number=11
+      X         Y        Z          Average Cartesian coordinates (A) 
+   1.35641   1.35641   4.06957
+ 
+                  Uij (A^2)
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+ 
+ 
+ Atom reference number=12
+      X         Y        Z          Average Cartesian coordinates (A) 
+   1.35641   1.35641   1.35641
+ 
+                  Uij (A^2)
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+  0.0000000E+00  0.0000000E+00  0.0000000E+00
+ 

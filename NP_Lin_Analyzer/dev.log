@@ -1,0 +1,20 @@
+
+
+==============
+Fri 17-Jul-20
+==============
+
+1. The initial program (v1p0) was designed to work with initial and fitted RMC
+models, where it is assumed that the atomic order in both is consistent.
+However, when swap is enabled, the atomic order will change in the fitted config
+as compared to the initial one and therefore v1p0 won't work properly in this
+case.
+
+2. The new implementation now is working with unique labels for atoms, composed
+of reference cell and reference number in RMC6F file (therefore, both of these
+two pieces of information are required to be existing in the file).
+
+==============
+Yuanpeng Zhang
+NIST & ORNL
+==============

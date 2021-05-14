@@ -1,0 +1,20 @@
+(Version 6f format configuration file)
+(Mapped different types of tetrahedrons)
+Metadata date:        2020-07-16
+Number of types of atoms:   1
+Atom types present:         TM0
+Number of each atom type:   1
+Number of moves generated:           0
+Number of moves tried:               0
+Number of moves accepted:            0
+Number of prior configuration saves: 0
+Number of atoms:                     1
+Supercell dimensions:                3 3 3
+Number density (Ang^-3):                 0.004630
+Cell (Ang/deg):   6.000000  6.000000  6.000000 90.000000 90.000000 90.000000
+Lattice vectors (Ang):
+  6.000000  0.000000  0.000000
+  0.000000  6.000000  0.000000
+  0.000000  0.000000  6.000000
+Atoms:
+1 TM2  [1]  0.583333  0.416667  0.916667 5 1 1 2

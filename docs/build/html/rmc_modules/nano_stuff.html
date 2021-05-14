@@ -1,0 +1,257 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Nano RMC6F configuration processing &mdash; Advanced-Tools-RMCProfile rc-0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="General routine for RMC6F configuration processing" href="rmc6f_stuff.html" />
+    <link rel="prev" title="Bulk RMC6F configuration processing" href="bulk_stuff.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Advanced-Tools-RMCProfile
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../rmc_modules.html">RMC Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="bulk_stuff.html">Bulk RMC6F configuration processing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Nano RMC6F configuration processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rmc6f_stuff.html">General routine for RMC6F configuration processing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../rmc_tools.html">RMC Tools</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Advanced-Tools-RMCProfile</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../rmc_modules.html">RMC Modules</a> &raquo;</li>
+        
+      <li>Nano RMC6F configuration processing</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/rmc_modules/nano_stuff.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-rmc_tools.nano_stuff"></span><div class="section" id="nano-rmc6f-configuration-processing">
+<h1>Nano RMC6F configuration processing<a class="headerlink" href="#nano-rmc6f-configuration-processing" title="Permalink to this headline">¶</a></h1>
+<p>This modules holds stuff relevant to processing nano RMC6F configurations.</p>
+<dl class="py class">
+<dt id="rmc_tools.nano_stuff.NanoStuff">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">rmc_tools.nano_stuff.</span></code><code class="sig-name descname"><span class="pre">NanoStuff</span></code><a class="reference internal" href="../_modules/rmc_tools/nano_stuff.html#NanoStuff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rmc_tools.nano_stuff.NanoStuff" title="Permalink to this definition">¶</a></dt>
+<dd><p>RMC6F nano configuration processing class.</p>
+<p>This class contains methods for processing naon RMC6F configurations.</p>
+<dl class="py method">
+<dt id="rmc_tools.nano_stuff.NanoStuff.cent_rad_config">
+<code class="sig-name descname"><span class="pre">cent_rad_config</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rmc6f_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rmc_tools/nano_stuff.html#NanoStuff.cent_rad_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rmc_tools.nano_stuff.NanoStuff.cent_rad_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for figuring out the center and radius of the input RMC6F nano configuration.</p>
+<p>Provided nano RMC6F configuration, this method can extract information about the         center and radius of the input nanoparticle configuration.</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>rmc6f_config {Object} – Instance of <cite>RMC6FReader</cite> class</p>
+</dd>
+<dt>Output:</dt><dd><p>The center and radius of input nanoparticle configuration can be accessed            from instance variable <cite>centPos</cite> and <cite>NPRadius</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="rmc_tools.nano_stuff.NanoStuff.np_to_shells">
+<code class="sig-name descname"><span class="pre">np_to_shells</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rmc6f_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rmc_tools/nano_stuff.html#NanoStuff.np_to_shells"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#rmc_tools.nano_stuff.NanoStuff.np_to_shells" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for grabbing shells from nano RMC6F configuration.</p>
+<p>Provided nano RMC6F configuration, this method can extract shells from it.         The center of the provided nanoparticle will be figured out automatically.</p>
+<dl>
+<dt>Arguments:</dt><dd><p>rmc6f_config {Object} – Instance of <cite>RMC6FReader</cite> class</p>
+</dd>
+<dt>Output:</dt><dd><p>shell_X.rmc6f – RMC6F configuration for generated shells.</p>
+<p>np_shell_gen.log – Log information about shells generation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="rmc6f_stuff.html" class="btn btn-neutral float-right" title="General routine for RMC6F configuration processing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="bulk_stuff.html" class="btn btn-neutral float-left" title="Bulk RMC6F configuration processing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Yuanpeng Zhang.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,457 @@
+
+'----------------------------------------------------------------------------------------### refinement methods ###
+iters 1000000
+chi2_convergence_criteria 0.000001
+'Auto_T(2)                                                    ' simulated annealing 
+do_errors
+no_LIMIT_warnings
+'continue_after_convergence
+r_wp  4.53235921 r_exp  0.425176869 r_p  4.18670481 r_wp_dash  5.25631341 r_p_dash  6.54321799 r_exp_dash  0.493090414 weighted_Durbin_Watson  0.152286601 gof  10.6599383
+'----------------------------------------------------------------------------------------### refinement methods ###
+
+
+'----------------------------------------------------------------------------------------### Global parameters ###
+'prm a  3.80539_0.00169
+'prm beqSn  6.13453_0.41496 min=0;
+'prm beqFe1  0.00000_0.02459 min=0;
+'prm beqFe2  0.68288_0.00973 min=0;
+'prm beqN  0.59794_0.01734 min=0;
+'prm scale1  1.00000
+'prm scale2  1.00000
+'prm scale3  1.00000
+'prm scale4  1.00000
+'prm mlxFe1  0.09619_0.01059
+'prm mlxFe2  0.85227_0.01987
+'----------------------------------------------------------------------------------------### Global parameters ### 
+
+
+
+'------------------------------------------------------------------------------------------ ### Defining data sets ###
+#define Si_NOMAD_bank2             
+#define Si_NOMAD_bank3
+'#define Si_NOMAD_bank4
+'#define Si_NOMAD_bank5
+'------------------------------------------------------------------------------------------ ### Defining data sets ###
+
+
+
+'------------------------------------------------------------------------------------------ ### Main refinement block ### 
+#ifdef Si_NOMAD_bank2 
+xdd "NOM_Sn1Fe3_10_K-1.xye"
+r_wp  4.27590153 r_exp  0.765130583 r_p  3.77314617 r_wp_dash  5.4350868 r_p_dash  6.80355776 r_exp_dash  0.972555401 weighted_Durbin_Watson  0.0960757946 gof  5.58845984
+
+	NeutronDiffraction                                              ' TOF neutron diffraction data
+	local alpha0 -52.16841` min -200 max 200      ' GSAS back to back function                
+    local alpha1  30.76918` min -200 max 200                
+	local beta0  -10.09696` min -200 max 200                	
+	local beta1  -1.37726` min -200 max 200                  	
+
+	
+	local !Lpath 21.125                         ' Using Lobanov absoprtion funciton for TOF neutron. Details in GSAS-I manual page 134 
+	local !two_theta 31
+	local mu  0.00000`_0.00839 min 0 max 1
+	Abs_Lobanov
+    
+	scale_pks = D_spacing^4;              ' Scale peak intensity as d^4
+	bkg @  0.947886632`_0.0110642921 -0.157851926`_0.0176724804  0.149126786`_0.0155246475 -0.0496799823`_0.0144938879  0.0478928812`_0.0122274857 -0.0568957562`_0.0105093054
+	start_X 2006
+	finish_X 14000 
+	TOF_x_axis_calibration(!t02_90, 11.99445_2.51045 , !difc2_90, 2846.73760_6.81217, difa2_90,  2.77576`_0.89593)         ' TOF = zero + difc*d + difa*d^2
+	
+	str
+		phase_name "Sn1Fe3"
+		space_group Pm-3m
+		Phase_LAC_1_on_cm( 0.00000)
+		Phase_Density_g_on_cm3( 7.67632`_0.01404)
+		Cubic(a  3.797208`_0.002316)
+		site Sn x  0 y  0 z  0 occ Sn 0.25 beq beqSn  4.84421`_0.59221
+		site Fe1 x  0 y  0 z  0 occ Fe 0.75 beq beqFe1  0.04114`_0.04391 min=0.03;
+		site Fe2 x  0.5 y  0.5 z  0 occ Fe  1 beq beqFe2  0.66986`_0.02728
+		site N  x  0.5 y  0.5 z  0.5 occ N  1 beq beqN  0.90225`_0.03014
+        'site Sn x  0 y  0 z  0 occ Sn 0.25 beq beqSn  0.00000_0.43381
+		'site Fe1 x  0 y  0 z  0 occ Fe 0.75 beq beqFe1  0.00000_0.09525
+		'site Fe2 x  0.5 y  0.5 z  0 occ Fe  1 beq beqFe2  0.00000_0.08342
+		'site N  x  0.5 y  0.5 z  0.5 occ N  1 beq beqN  0.00000_0.10079
+		'scale scale_nuclear  1.73544078_0.1318
+        scale scale_nuclear  1.76411189`_0.03668
+		
+		TOF_PV(@, 2444.42591`_21.55763,@ , 0.282267797`_0.0237737985, difc2_90)
+		
+		'TOF_Exponential (a21, 60.08496_10.50278, a22, 35.28298_10.89156, 4, difc2_90, +)
+		
+		moderator_mic_NOMAD(two_theta,31,tspow2, 3.13904`_30.72900,alph02, 0.42547`_0.54331,alph12, 0.01000`_0.61281,beta02, 0.00224`_0.00081,beta12, 0.03363`_0.00227,k_eff, 3154224397.52663`_10.65994,hk, 1.07131`_1.06445)
+	
+#endif
+
+#ifdef Si_NOMAD_bank3 
+xdd "NOM_Sn1Fe3_10_K-2.xye"
+r_wp  4.58538476 r_exp  0.306284836 r_p  4.67498108 r_wp_dash  5.22494839 r_p_dash  6.31302389 r_exp_dash  0.349005055 weighted_Durbin_Watson  0.0562108061 gof  14.970982
+	
+	NeutronDiffraction
+	scale_pks = D_spacing^4;  
+
+	local alpha0  161.31318` min -200 max 200        
+    local alpha1 -115.97847` min -200 max 200          
+	local beta0  0.29532` min -200 max 200          
+	local beta1 -1.24382`	  min -200 max 200
+	
+	local !Lpath 20.185
+	local !two_theta 67
+	local mu  0.00000`_0.00479 min 0 max 1
+	Abs_Lobanov
+	
+	
+
+	bkg @  0.536123795`_0.0118095724 -0.425149887`_0.0168536406 -0.0655424922`_0.0173389317 -0.183321825`_0.0123091921  0.162189583`_0.00847053454
+	start_X 3930
+	finish_X 18000      
+	TOF_x_axis_calibration(!t03_90,-14.73698_3.17494 , !difc3_90, 5641.48367_3.03622, difa3_90, -7.03167`_0.98226)
+	
+	str
+		phase_name "Sn1Fe3"
+		space_group Pm-3m
+		Phase_LAC_1_on_cm( 0.00000)
+		Phase_Density_g_on_cm3( 7.67632`_0.01404)
+		Cubic(=a;:3.797208`_0.002316)
+		site Sn x  0 y  0 z  0 occ Sn 0.25 beq =beqSn;:4.84421`_0.59221
+		site Fe1 x  0 y  0 z  0 occ Fe 0.75 beq =beqFe1;:  0.04114`_0.04391
+		site Fe2 x  0.5 y  0.5 z  0 occ Fe  1 beq =beqFe2;:0.66986`_0.02728
+		site N  x  0.5 y  0.5 z  0.5 occ N  1 beq =beqN;:0.90225`_0.03014
+		scale scale_nuclear3  4.59880246`_0.09559
+		
+		TOF_PV(@, 2076.25986`_13.61763,@ , 0.523651756`_0.0099073299, difc3_90)
+		
+		moderator_mic_NOMAD(two_theta,67,tspow3, 5.50000`_4.94842,alph03, 1.11898`_0.80075,alph13, 0.81768`_0.49980,beta03, 0.00121`_0.00011,beta13, 0.00100`_0.00023,k_eff3, 4893011637.30782`_10.65994,hk3, 0.00295`_0.00021)
+	
+#endif
+
+#ifdef Si_NOMAD_bank4 
+xdd "NOM_Sn1Fe3_10_K-3.xye"
+r_wp  3.15659208 r_exp  0.386501126 r_p  3.39229726 r_wp_dash  3.77675208 r_p_dash  5.52167232 r_exp_dash  0.462435086 weighted_Durbin_Watson  0.0758204406 gof  8.16709673
+	
+	NeutronDiffraction 
+	scale_pks = D_spacing^4;
+	
+	local alpha0  199.99957 min -200 max 200         
+    local alpha1 -83.31546 min -200 max 200          
+	local beta0 -16.30142 min -200 max 200
+	local beta1  1.68731 min -200 max 200
+	
+	local !Lpath 20.434
+	local !two_theta 122
+	local mu  0.07226_0.00301 min 0 max 1
+	Abs_Lobanov
+		
+	bkg @  0.54469711_0.00357379898 -0.423082899_0.00572693365  0.132134907_0.00504644193 -0.109227496_0.00384882074  0.0393285426_0.0030338439
+	start_X 3900
+	finish_X 16500      
+	TOF_x_axis_calibration(!t04_90, 1.84634, !difc4_90, 9032.92789, difa4_90,  -8.20525)
+
+	str
+		phase_name "Sn1Fe3"
+		space_group Pm-3m
+		Phase_LAC_1_on_cm( 0.00000)
+		Phase_Density_g_on_cm3( 7.62795_0.00149)
+		Cubic(=a;:3.805218_0.000247)
+		site Sn x  0 y  0 z  0 occ Sn 0.25 beq =beqSn;:1.69413_0.17534
+		site Fe1 x  0 y  0 z  0 occ Fe 0.75 beq =beqFe1;:0.11244_0.01698
+		site Fe2 x  0.5 y  0.5 z  0 occ Fe  1 beq =beqFe2;:0.44156_0.00675
+		site N  x  0.5 y  0.5 z  0.5 occ N  1 beq =beqN;:0.39720_0.00771
+		scale scale_nuclear4  5.44689623_0.07165
+		
+		TOF_PV(@, 2382.58937_11.89959,@ , 0.480293747_0.00847911878, difc2_90)
+		
+		moderator_mic_NOMAD(two_theta,122,tspow4, 1.50000_14.48612,alph04, 0.31697_0.15795,alph14, 0.29067_0.13265,beta04, 0.00314_0.00017,beta14, 0.04894_0.00088,k_eff4, 4893011637.30782_7.36637,hk4, 0.14691_0.00519)
+	
+	str
+		phase_name "Sn3Fe1_magnetic"
+		mag_only_for_mag_sites
+		Cubic(=a;:3.805218_0.000247)
+		mag_space_group 1.1
+		site Fe1  x  0 y  0 z  0 occ Fe 0.75 beq =beqFe1;:  0.11244_0.01698
+		mlx 0.0
+		mly 0.0
+		mlz =mlzFe1;:1.25182_0.03367
+		MM_CrystalAxis_Display( 0.00000, 0.00000, 4.76344_0.12811)
+		site Fe2  x  0.5 y  0.5 z  0 occ Fe  1 beq =beqFe2;:0.44156_0.00675
+		mlx 0.0
+		mly 0.0
+		mlz =mlzFe2;:0.49691_0.00899
+		MM_CrystalAxis_Display( 0.00000, 0.00000, 1.89086_0.03423)
+		site Fe2  x  0 y  0.5 z  0.5 occ Fe  1 beq =beqFe2;:0.44156_0.00675
+		mlx 0.0
+		mly 0.0
+		mlz =mlzFe2;:0.49691_0.00899
+		MM_CrystalAxis_Display( 0.00000, 0.00000, 1.89086_0.03423)
+		site Fe2  x  0.5 y  0 z  0.5 occ Fe  1 beq =beqFe2;:0.44156_0.00675
+		mlx 0.0
+		mly 0.0
+		mlz =mlzFe2;:0.49691_0.00899
+		MM_CrystalAxis_Display( 0.00000, 0.00000, 1.89086_0.03423)
+		scale =scale_nuclear4;:5.44689623_0.07165
+		r_bragg  5.90225677
+		
+		TOF_PV(@, 0.00010_175.07644,@ , 0.661623365_412253852, difc2_90)                              ' TOF Peusdo-Voigt function 
+	
+		moderator_mic_NOMAD(two_theta,122,tspow41, 5.18364_0.69837,alph041, 0.00100_52.45754,alph141, 32.15324_23.85400,beta041, 0.00100_0.07381,beta141, 0.09625_0.40971,k_eff41, 4893011637.30782_7.36637,hk41, 1229114010614.82400_7.36637)
+
+#endif
+
+#ifdef Si_NOMAD_bank5 
+xdd NOM_Sn_Doped_0P25_at_100K-4.xye
+r_wp  4.3996583 r_exp  0.29811528 r_p  3.50954343 r_wp_dash  6.12634165 r_p_dash  6.53444842 r_exp_dash  0.415113159 weighted_Durbin_Watson  0.163503069 gof  14.7582449
+	NeutronDiffraction
+	
+	scale_pks = D_spacing^4;
+
+	
+	local alpha0  153.67510 min -200 max 200            
+    local alpha1 -55.53365 min -200 max 200            
+	local beta0  31.24596 min -200 max 200            
+	local beta1  0.43264  min -200 max 200
+	
+    local !Lpath 20.09
+	local !two_theta 154
+	local mu  0.05036_0.00531 min 0 max 1
+	Abs_Lobanov
+    
+	
+    bkg @  0.519206881_0.00197816601 -0.220814757_0.00293495095  0.0724584777_0.00228287728 -0.0329245731_0.00212560477
+	start_X  4300
+	finish_X 15000    
+	TOF_x_axis_calibration(!t05_90, 1.71449 , !difc5_90, 9902.82137, difa5_90,-13.16228_0.89921)
+	str
+	phase_name "bank5"
+	scale @  3.61077391_0.09508
+	peak_type pv
+	TOF_PV(@, 449.52420_4.29781,@ , 0.286900433_0.00890004537, difc5_90)
+
+
+	'GSAS_btb
+	 TOF_Exponential (a51, 44.96601_2.76910, a52, 89.41944_8.01334, 4, difc5_90, +)
+	 wifd_mic_moderator(two_theta,154,tspow5, 3.04538_1274.91702,tauf_05, 0.14186_0.10765,tauf_15, 0.01000_0.13568,taus_05, 0.00415_0.00021,taus_15, 0.05318_0.00158,t_eff5, 3744681893.88487_13.60273,hhh5, 0.11149_0.00572)
+	 #endif
+	        
+'------------------------------------------------------------------------------------------ ### Main refinement block ###
+
+
+'----------------------------------------------------------------------------------------### user defined macros ###
+macro NeutronDiffraction
+{  TOF_LAM(0.001)
+	neutron_data
+	x_calculation_step = Yobs_dx_at(Xo);
+	weighting = If(SigmaYobs < 0.0001, 0.001, 1/SigmaYobs^2);     'trouble from very weak diffraction data points
+}
+
+macro GSAS_btb                                                                                    'GSAS back to back function type 3, GSAS manual page 150  
+{
+
+   push_peak                 
+   	exp_conv_const = alpha0 + alpha1 / D_spacing;
+   bring_2nd_peak_to_top   
+      exp_conv_const = beta0 + beta1 / D_spacing^4;
+   add_pop_1st_2nd_peak 
+   
+}
+
+macro modified_GSAS_btb(, alph0,,alph1,,beta0,,beta1)                                          'From John Evans old peakshape for GEM peak shape  
+{
+push_peak 
+    exp_conv_const = alph0 + alph1 / D_spacing;
+	bring_2nd_peak_to_top
+      user_defined_convolution = beta0 Exp( beta1  X) / D_spacing^4;  
+            min 0
+            max = -Ln(0.001) / beta1;
+   add_pop_1st_2nd_peak
+     
+   
+}
+
+macro modified_TOF_Exponential(a0, a0v, a1, a1v, a2, a2v, tpow1, tpow1v, & wexp, & t1, lr)    'TOF exponential 
+	{   
+		#m_argu a0
+		#m_argu a1
+		#m_argu a2
+	    prm  tpow1 tpow1v
+		If_Prm_Eqn_Rpt(a0, a0v, min = Max(Val .3, 1e-6); max = 2 Val + 1; )
+		If_Prm_Eqn_Rpt(a1, a1v, min = Max(Val .3, 1e-6); max = 2 Val + 1; )
+		If_Prm_Eqn_Rpt(a2, a2v, min = Max(Val .3, 1e-6); max = 2 Val + 1; )
+		
+		exp_conv_const = lr Constant(t1) / (CeV(a0,a0v) + CeV(a2,a2v)/D_spacing^tpow1 + CeV(a1,a1v) / D_spacing^wexp);
+	}
+
+
+macro GSAS_Ikeda_Carpenter(two_theta, two_thetav, tpow, tpowv, alph0,alph0v,alph1,alph1v,beta0,beta0v,beta1, beta1v, k_eff,k_effv, Acons, Aconsv)  'GSAS type 2 bank, moderator line shape                                                                   'GSAS type_2 function, GSAS manual page 146 
+{ 
+ local !two_theta two_thetav 
+ local  !lam = 2 D_spacing Sin(0.00872664626 two_theta)  ; 
+ prm tpow tpowv min 1 max 5
+ prm alph = 1/(alph0 + alph1 lam );
+ prm alph0   alph0v min 0.001        
+ prm alph1   alph1v min 0.01
+ prm beta0   beta0v min 0.01
+ prm beta1   beta1v min 0.01 
+ prm beta = 1/(beta0 + beta1/lam^2 ); 
+ prm k_eff   k_effv min 0.001
+ prm Acons   Aconsv  min 0.001
+ local  R1 = Acons Exp(-81.799/k_eff lam^2);
+ user_defined_convolution =   X^tpow Exp(-X alph);
+  min 0 max = 10 /alph;
+ 'local !R1 = Exp( -950 /(k_eff lam^2)) ;			
+        push_peak  
+                scale_top_peak = (1-R1); 
+        bring_2nd_peak_to_top 
+                exp_conv_const = -Ln(0.001) beta; 
+				'user_defined_convolution = Exp (-X/beta); 
+				min 0 max 1
+                scale_top_peak = R1;   
+        add_pop_1st_2nd_peak 
+ 
+}
+
+macro wifd_mic_moderator(two_theta,two_thetav,tspow,tspowv,tauf_0,tauf_0v,tauf_1,tauf_1v,taus_0,taus_0v,taus_1,taus_1v,t_eff,t_effv,hhh,hhhv) {                                'single pulse
+   local  !two_theta two_thetav
+	prm tspow   tspowv min 1.5 max 5.5   
+	prm tauf_0  tauf_0v min 0.001        
+	prm tauf_1  tauf_1v min 0.01         
+	prm taus_0  taus_0v min 0.001        
+	prm taus_1  taus_1v min 0.001        
+	prm t_eff  t_effv min 90.0           
+   prm hhh  hhhv min .001 
+  ' prm double_pulse  double_pulsev min 0.001
+	local  !lam = 2 D_spacing Sin(0.00872664626 two_theta)  ;
+
+ 	user_defined_convolution = X^tspow Exp(-X / (tauf_0 + tauf_1 lam )); 
+   min 0 max = 10 (tauf_0 + tauf_1 lam );
+
+	local !storage = Exp( -950 /(t_eff lam^2)) hhh;			
+        push_peak  
+                scale_top_peak = (1-storage); 
+        bring_2nd_peak_to_top 
+                exp_conv_const = -Ln(0.001) / (taus_0 + taus_1 / lam^2); 
+                scale_top_peak = storage;   
+        add_pop_1st_2nd_peak 
+}
+
+
+
+
+macro moderator_mic_NOMAD(two_theta,two_thetav,tspow,tspowv,alph0,alph0v,alph1,alph1v,beta0,beta0v,beta1,beta1v,k_eff,k_effv,hk,hkv)       'modified moderator peak shape, initial from Bill David
+{
+    local  !two_theta two_thetav
+	prm tspow   tspowv min 1.5 max 5.5   
+	prm alph0   alph0v min 0.001        
+	prm alph1   alph1v min 0.01         
+	prm beta0   beta0v min 0.001        
+	prm beta1   beta1v min 0.001        
+	prm k_eff   k_effv min 90.0           
+    prm hk      hkv min .001 
+	local  !lam = 2 D_spacing Sin(0.00872664626 two_theta)  ;
+ 
+ 	user_defined_convolution = X^tspow Exp(-X / (alph0 + alph1 lam ));      ' slowdown neutron 1/E
+     min 0 max = 10 (alph0 + alph1 lam );
+ 
+	local !Rstorage = Exp(-950/(k_eff lam^2)) hk;	                     ' storage neutron, maxvillian distribution   		
+        push_peak  
+                scale_top_peak = (1-Rstorage); 
+        bring_2nd_peak_to_top 
+                exp_conv_const = -Ln(0.001) / (beta0 + beta1 / lam^2); 
+                scale_top_peak = Rstorage;   
+        add_pop_1st_2nd_peak 
+}
+
+
+macro wifd_pkshape_anneal_1(two_theta,two_thetav,aprm,aprmv,tauf_2,tauf_2v,tauf_1,tauf_1v,tauf_0,tauf_0v,taus_0,taus_0v,taus_1,taus_1v,t_eff,t_effv,hhh,hhhv,hhh_0,hhh_0v) {
+	local  !two_theta two_thetav
+	local  !lam = 2 D_spacing Sin(0.00872664626 two_theta)  ;
+	prm aprm    aprmv min 1.5 max 2.5  
+	prm tauf_2  tauf_2v min 0.01    val_on_continue = Rand(0.01,1);
+	prm tauf_1  tauf_1v min 0.01    val_on_continue = Rand(0.01,1);
+	prm tauf_0  tauf_0v min 0.001   val_on_continue = Rand(0.01,1);          
+	user_defined_convolution = X^aprm Exp(-X / (tauf_0 + tauf_1 lam + tauf_2 lam^2)); min 0 max = 20 aprm tauf_1 lam;
+
+	prm taus_0  taus_0v min 0.001   val_on_continue = Rand(0.01,1); 
+	prm taus_1  taus_1v min 0.001   val_on_continue = Rand(0.01,1);
+	prm t_eff  t_effv min 90.0 val_on_continue = Rand(10,1000);
+	local storage = Exp( -950 /(t_eff lam lam)) ;			
+        push_peak 
+                prm hhh  hhhv min .001 
+                prm hhh_0  hhh_0v min 0.001
+                hat = hhh_0 + hhh D_spacing; 
+                scale_top_peak = (1-storage); 
+        bring_2nd_peak_to_top 
+		  			 hat = hhh_0 + hhh D_spacing;
+                scale_top_peak = storage;   
+                exp_conv_const = -Ln(0.001) (taus_0 + lam taus_1); 
+        add_pop_1st_2nd_peak 
+}
+
+
+macro Abs_Lobanov                                             'Lobanov absorption macro with calculated lambda for wavelength dependence of mu (as per GSAS manual), from Pam Whitfield
+{
+local !Lf = Lpath;      '  flightpath
+prm   !h_bar 6.626176e-34 ' Plank's constant
+prm   !m_n 1.67495e-27 ' neutron mass
+local !td_const = 10^4 h_bar/(m_n Lf);
+local !sintheta = Sin(Deg_on_2 two_theta);
+local !lambda = Xo 10^4 h_bar/(m_n Lf);
+local !k0 = 1.697653;
+local !k1 = (25.99978 - (0.01911 sintheta^0.5)Exp(-0.024514 sintheta^2)) + 0.109561 sintheta - 26.0456;:  0.01578
+local !k2 = -0.02489 - (0.39499 sintheta^2) + (1.219077 sintheta^3) - (1.31268 sintheta^4) + (0.871081 sintheta^5) 
+           - (0.2327 sintheta^6);:0.00535
+local !k3 = 0.003045 + (0.018167 sintheta^2) - (0.03305 sintheta^4);:0.00387
+local !k4 = 1.433902 + (11.07504 sintheta^2) - (8.77629 sintheta^4) + (10.02088 sintheta^6) - (3.36778 sintheta^8);:5.81947
+local !k5 = ((0.013869 - 0.01249 sintheta^2)Exp(3.27094 sintheta^2)) + ((0.337894 + (13.77317 sintheta^2))/((1 + 11.53544 sintheta^2)^1.555039));:0.40847
+local !k6 = (1.933433 / (1 + 23.12967 sintheta^2)^1.686715) - 0.13576 sintheta + 1.163198;:1.09426
+local !k7 = 0.044365 - (0.04259/((1 + 0.41051 sintheta^2)^148.4202));:0.04436
+scale_pks = If( (mu*lambda) < 3, Exp(-k0 (mu*lambda) - k1 (mu*lambda)^2 - k2 (mu*lambda)^3 - k3 (mu*lambda)^4),
+				Exp((k4 - k7/(1 + k5 ((mu*lambda)-3))^k6)+k7)
+				);				
+}
+
+
+'----------------------------------------------------------------------------------------### user defined macros ###
+C_matrix_normalized
+{
+                             1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40
+mu_19783872            1:  100  34   2   8 -16 -35  -9 -13  -5  90  35   6  65  54   3  -1  13 -21  50 -17   0  -9  10   6   5   2 -24  15  15 -23  26  -0   4  -3  -1 -34  40   0  -3   2
+difa2_90               2:   34 100   2   3  -9 -13  -5  -6  -5  27   1   9  15  13 -25   3  85 -76  69 -49   0 -60  -0   1   4   2  -7   3   4  -5   6  -3   1   1   1  -8  11  -0  -0   1
+bkg24825472            3:    2   2 100  30  40  35  21   1  -7 -18   4   6  12  15   0   0   2  -4   4 -12   0   2 -51   3   6   2  -5   3   2  -4   6  -5  -0   2   3  -5   7  -0  -1   2
+bkg24825728            4:    8   3  30 100  59  48  40  38   4  18  -1  -6 -10 -12   4  -1   1   0   3   9   0  -2  35  -2  -4  -2   4  -2  -2   3  -5   3  -0  -1  -1   4  -6   0   0  -1
+bkg24825216            5:  -16  -9  40  59 100  60  57  33  -1  -1   3   3  10   9  -9  -2  -4   3 -12   0  -0   4  15   1   1   1  -4   2   2  -3   4  -0   1  -0  -0  -5   7   0  -0   0
+bkg24829568            6:  -35 -13  35  48  60 100  59  44   3 -34  -3 -12 -25 -21   1  -2  -5   7 -20   7  -0   3 -10  -1  -3  -2  11  -5  -6   8  -8   1  -2   1   1  13 -18  -0   1  -0
+bkg24829312            7:   -9  -5  21  40  57  59 100  56   2   4   6  -2   4   2  -4  -2  -2   1 -11   5  -0   2  18  -1  -1  -1  -1   1   1  -2   2   2   1  -1  -1  -3   3   0  -0  -1
+bkg24829824            8:  -13  -6   1  38  33  44  56 100  -2   1   4  -5  -1  -0  -5  -7  -1   0 -12   4  -0   5  22   1   1  -1   2  -0  -1   1   1  -1  -1   1   1   1  -3  -0  -0   1
+a                      9:   -5  -5  -7   4  -1   3   2  -2 100  -1   0  -5  -5 -24  -6   5  -1   2  -6   8  -0 -55   6 -25 -77  -7  -7  -0  13 -11 -21  77  22 -46 -50 -17  18   0   3 -38
+scale_nuclear         10:   90  27 -18  18  -1 -34   4   1  -1 100  42   1  71  57  -3  -3  10 -17  40 -11   0  -7  43   6   3   1 -26  16  16 -25  29   2   5  -5  -3 -37  43   0  -4   1
+beqSn                 11:   35   1   4  -1   3  -3   6   4   0  42 100 -69  55  47  -1  -7  -1  -3   3  -3   0   1  -0  13  -3 -10  -5  15   7 -19  35   1   1  -3   3 -23  12   0  -9   5
+beqFe1                12:    6   9   6  -6   3 -12  -2  -5  -5   1 -69 100 -10   2  -8   7   5  -6  12 -12   0  -3  -1 -14  10  13 -17  -2   8  -6 -17  -1   4   0  -6  -8  28   0  10  -7
+beqFe2                13:   65  15  12 -10  10 -25   4  -1  -5  71  55 -10 100  75 -13  -5   6 -14  24 -22   0  -2   1  11   5   1 -33  22  21 -30  40   1   6  -5  -1 -48  54   0  -7   4
+beqN                  14:   54  13  15 -12   9 -21   2  -0 -24  57  47   2  75 100 -10  -6   5 -12  21 -20   0   9  -3  25  19  10 -25  16  10 -21  44 -15   0   5  10 -30  34  -0  -8   9
+m5c775546_6           15:    3 -25   0   4  -9   1  -4  -5  -6  -3  -1  -8 -13 -10 100  -9 -23  27 -30  71  -0  28 -18   1   4  -1   7  -3  -4   5  -3  -5  -3   4   4   8 -11  -0  -0   3
+tspow2                16:   -1   3   0  -1  -2  -2  -2  -7   5  -3  -7   7  -5  -6  -9 100   6  50  10  -8  -0 -45  -2  -4  -3   0  -0  -1   1  -0  -4   4   1  -2  -3   0   1   0   1  -2
+alph02                17:   13  85   2   1  -4  -5  -2  -1  -1  10  -1   5   6   5 -23   6 100 -64  35 -32   0 -71  -2   0   1   1  -3   1   2  -2   2  -0   1  -0  -0  -3   5  -0   0  -0
+alph12                18:  -21 -76  -4   0   3   7   1   0   2 -17  -3  -6 -14 -12  27  50 -64 100 -45  46  -0  20   4  -1  -2  -1   6  -3  -4   5  -5   0  -1   0   0   8 -10   0   0  -0
+beta02                19:   50  69   4   3 -12 -20 -11 -12  -6  40   3  12  24  21 -30  10  35 -45 100 -69   0 -33  -1   2   6   3 -10   5   6  -8   9  -3   1   1   1 -12  17  -0  -1   2
+beta12                20:  -17 -49 -12   9   0   7   5   4   8 -11  -3 -12 -22 -20  71  -8 -32  46 -69 100  -0  28  20  -3  -7  -3   9  -5  -5   7  -8   5  -0  -2  -2  11 -15   0   0  -2
+k_eff                 21:    0   0   0   0  -0  -0  -0  -0  -0   0   0   0   0   0  -0  -0   0  -0   0  -0 100   0   0   0  -0  -0   0  -0  -0   0   0  -0  -0   0   0   0  -0  -0  -0   0
+hk                    22:   -9 -60   2  -2   4   3   2   5 -55  -7   1  -3  -2   9  28 -45 -71  20 -33  28   0 100  -0  14  42   3   6  -1  -9   8  10 -42 -13  25  28  13 -15  -0  -2  21
+pv_lor27355440_       23:   10  -0 -51  35  15 -10  18  22   6  43  -0  -1   1  -3 -18  -2  -2   4  -1  20   0  -0 100  -2  -5  -1  -1   0   1  -1  -1   5   1  -3  -3  -2   2   0   0  -2
+mu_19785120           24:    6   1   3  -2   1  -1  -1   1 -25   6  13 -14  11  25   1  -4   0  -1   2  -3   0  14  -2 100  17 -15  32  10 -45  39  87 -20 -10  14  17  24 -67  -0 -18  14
+difa3_90              25:    5   4   6  -4   1  -3  -1   1 -77   3  -3  10   5  19   4  -3   1  -2   6  -7  -0  42  -5  17 100   8   1   2 -11   8  14 -29  34  -5 -15  15 -15   0   0  16
+bkg24828800           26:    2   2   2  -2   1  -2  -1  -1  -7   1 -10  13   1  10  -1   0   1  -1   3  -3  -0   3  -1 -15   8 100  25 -11  10   0 -38  -5   5  -3  -2  45  21   0  42 -33
+bkg24830080           27:  -24  -7  -5   4  -4  11  -1   2  -7 -26  -5 -17 -33 -25   7  -0  -3   6 -10   9   0   6  -1  32   1  25 100  57  27  58  25  -9 -10  10  10  16 -49  -0 -11  18
+bkg24828544           28:   15   3   3  -2   2  -5   1  -0  -0  16  15  -2  22  16  -3  -1   1  -3   5  -5  -0  -1   0  10   2 -11  57 100  69  47  40   5   2  -2  -1 -55  -4   0 -38  27
+bkg24828288           29:   15   4   2  -2   2  -6   1  -1  13  16   7   8  21  10  -4   1   2  -4   6  -5  -0  -9   1 -45 -11  10  27  69 100  22 -17  10   0  -3  -5 -56  46   0 -14   5
+bkg24831872           30:  -23  -5  -4   3  -3   8  -2   1 -11 -25 -19  -6 -30 -21   5  -0  -2   5  -8   7   0   8  -1  39   8   0  58  47  22 100  31  -7  -6   9   7   9 -54  -0 -18   6
+scale_nuclear3        31:   26   6   6  -5   4  -8   2   1 -21  29  35 -17  40  44  -3  -4   2  -5   9  -8   0  10  -1  87  14 -38  25  40 -17  31 100 -14  -8  11  15 -21 -43  -0 -37  29
+m5c775546_7           32:   -0  -3  -5   3  -0   1   2  -1  77   2   1  -1   1 -15  -5   4  -0   0  -3   5  -0 -42   5 -20 -29  -5  -9   5  10  -7 -14 100  68 -79 -83 -17  11   0  -2 -53
+tspow3                33:    4   1  -0  -0   1  -2   1  -1  22   5   1   4   6   0  -3   1   1  -1   1  -0  -0 -13   1 -10  34   5 -10   2   0  -6  -8  68 100 -95 -89   2   3   0   8 -32
+alph03                34:   -3   1   2  -1  -0   1  -1   1 -46  -5  -3   0  -5   5   4  -2  -0   0   1  -2   0  25  -3  14  -5  -3  10  -2  -3   9  11 -79 -95 100  86   2  -6  -0  -8  37
+alph13                35:   -1   1   3  -1  -0   1  -1   1 -50  -3   3  -6  -1  10   4  -3  -0   0   1  -2   0  28  -3  17 -15  -2  10  -1  -5   7  15 -83 -89  86 100   4  -9  -0  -9  40
+beta03                36:  -34  -8  -5   4  -5  13  -3   1 -17 -37 -23  -8 -48 -30   8   0  -3   8 -12  11   0  13  -2  24  15  45  16 -55 -56   9 -21 -17   2   2   4 100 -45  -0  58 -17
+beta13                37:   40  11   7  -6   7 -18   3  -3  18  43  12  28  54  34 -11   1   5 -10  17 -15  -0 -15   2 -67 -15  21 -49  -4  46 -54 -43  11   3  -6  -9 -45 100   0  25 -16
+k_eff3                38:    0  -0  -0   0   0  -0   0  -0   0   0   0   0   0  -0  -0   0  -0   0  -0   0  -0  -0   0  -0   0   0  -0   0   0  -0  -0   0   0  -0  -0  -0   0 100  -0   0
+hk3                   39:   -3  -0  -1   0  -0   1  -0  -0   3  -4  -9  10  -7  -8  -0   1   0   0  -1   0  -0  -2   0 -18   0  42 -11 -38 -14 -18 -37  -2   8  -8  -9  58  25  -0 100 -47
+pv_lor27352400_       40:    2   1   2  -1   0  -0  -1   1 -38   1   5  -7   4   9   3  -2  -0  -0   2  -2   0  21  -2  14  16 -33  18  27   5   6  29 -53 -32  37  40 -17 -16   0 -47 100
+}

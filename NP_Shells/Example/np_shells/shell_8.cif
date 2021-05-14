@@ -1,0 +1,60 @@
+data_taken_from_RMCProfile_configurations
+_audit_creation_method  'by_Configurations_averaging'
+_publ_section_comment
+;
+  (Configuration used: shell_8.cif )
+;
+_cell_length_a                      5.4260
+_cell_length_b                      5.4260
+_cell_length_c                      5.4260
+_cell_angle_alpha                  90.0000
+_cell_angle_beta                   90.0000
+_cell_angle_gamma                  90.0000
+ 
+_symmetry_space_group_name_H-M    'P 1'
+_symmetry_Int_Tables_number         1
+_symmetry_cell_setting             triclinic
+loop_
+_symmetry_equiv_pos_as_xyz
+'+x,+y,+z'
+ 
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_occupancy
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+   Ce1    Ce 1.0000      0.0000    0.0000    0.0000
+    O2     O 1.0000      0.7500    0.7500    0.7500
+    O3     O 1.0000      0.7500    0.7500    0.2500
+   Ce4    Ce 1.0000      0.0000    0.5000    0.5000
+    O5     O 1.0000      0.7500    0.2500    0.2500
+    O6     O 1.0000      0.7500    0.2500    0.7500
+   Ce7    Ce 1.0000      0.5000    0.0000    0.5000
+    O8     O 1.0000      0.2500    0.7500    0.2500
+    O9     O 1.0000      0.2500    0.7500    0.7500
+   Ce10   Ce 1.0000      0.5000    0.5000    0.0000
+    O11    O 1.0000      0.2500    0.2500    0.7500
+    O12    O 1.0000      0.2500    0.2500    0.2500
+ 
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_23
+_atom_site_aniso_U_13
+_atom_site_aniso_U_12
+   Ce1      0.0000     0.0000     0.0000     0.0000    -0.0000    -0.0000
+    O2      0.0000     0.0000     0.0000    -0.0000    -0.0000    -0.0000
+    O3      0.0000     0.0000     0.0000     0.0000     0.0000    -0.0000
+   Ce4      0.0000     0.0000     0.0000    -0.0000     0.0000    -0.0000
+    O5      0.0000     0.0000     0.0000    -0.0000     0.0000     0.0000
+    O6      0.0000     0.0000     0.0000     0.0000    -0.0000     0.0000
+   Ce7      0.0000     0.0000     0.0000    -0.0000     0.0000    -0.0000
+    O8      0.0000     0.0000     0.0000     0.0000    -0.0000     0.0000
+    O9      0.0000     0.0000     0.0000    -0.0000     0.0000     0.0000
+   Ce10     0.0000     0.0000     0.0000     0.0000    -0.0000    -0.0000
+    O11     0.0000     0.0000     0.0000     0.0000     0.0000    -0.0000
+    O12     0.0000     0.0000     0.0000    -0.0000    -0.0000    -0.0000

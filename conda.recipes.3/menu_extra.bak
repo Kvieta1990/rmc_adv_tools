@@ -1,0 +1,14 @@
+{
+		{
+            "name" : "PDFgui Manual",
+            "webbrowser" : "${PREFIX}/@PDFGUIBASE@/doc/manual/pdfgui.html"
+        },
+        {
+            "name" : "PDFgui Tutorial Files",
+            "webbrowser" : "${PREFIX}/@PDFGUIBASE@/doc/tutorial"
+        },
+        {
+            "name" : "PDFgui Reference Paper",
+            "webbrowser" : "${PREFIX}/@PDFGUIBASE@/doc/Farrow-jpcm-2007.pdf"
+        }
+}

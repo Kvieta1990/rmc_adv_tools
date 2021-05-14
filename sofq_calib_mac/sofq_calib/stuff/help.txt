@@ -1,0 +1,14 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+To use this program, one should have bank-by-bank neutron 
+S(Q) and Bragg data from the same measurement.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+1. Load the S(Q) and Bragg data coming from the same bank and then specify the temporary difc value (refer to the documentation page under 'help' menu for details). Usually, typical difc values (as our starting point for the adjustment) for bank-2 to bank-5 for NOMAD diffractometer is as follows: 2863, 5609, 9045 and 9914, respectively. The bank number input is not necessary at this step.
+
+2. Then one can press the 'Plot' button to visualize both datasets plotted in the same graph, in time-of-flight (TOF) space (i.e. as the initial step, the imported S(Q) data is transformed into TOF space, using the input difc value). For better comparison between the two datasets, one can use the input boxes and slide bars for scaling and offseting for both. Meanwhile, one can adjust the difc value through either manual input or dragging the corresponding slider.
+
+3. Once getting a reasonable match in between the S(Q) (now, in temporary TOF space) and Bragg data, one can then input the difc, difa and dzero values obtained from Bragg refinement for sample, followed by pressing 'Export' button to export the calibrated S(Q) data. At this step, it is necessary that the 'Bank Number' box should have an integer input, specifying the bank number. It should be pointed out that this bank number is just a label and therefore it does not have to (though, it's always a good practice to) be the same as the real bank number.
+
+4. The same procedure can then be repeated for all the other banks we want to include in the finally merged S(Q) data. After that, one can then press 'Merge' button to go to a separate window for merging all the calibrated banks. There, one can specify the start and stop Q values for each bank. Several other options are provided and the corresponding functionalities should be self-explaining as shown on the panel.
+
+5. As one is processing the input data, log information will be printed out to the panel in the right of the main frame. One can visualize what has been done as well as save for later inspection.

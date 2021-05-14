@@ -1,0 +1,12 @@
+{
+    "menu_name": "Anaconda${PY_VER} ${PLATFORM}",
+    "menu_items":
+	[
+		{
+			"name": "Topas4RMC",
+			"pywscript" : "${PYTHON_SCRIPTS}/topas4rmc-script.pyw",
+			"icon": "${MENU_DIR}/icon.ico",
+			"desktop": true
+		}
+    ]
+}
