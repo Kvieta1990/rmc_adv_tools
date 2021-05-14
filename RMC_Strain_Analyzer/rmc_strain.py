@@ -2,15 +2,41 @@
 RMC config strain analyzer
 ==========================
 
-Python script for strain field analysis for RMC6F configuration. The script has
-been embodied into the RMCProfile release package so that it can be simply
-executed as,
+Python script for strain field analysis for RMC6F configuration. Details about
+strain analysis theoretical description can be found in the following paper,
+
+https://doi.org/10.1107/S1600576719000372
+
+1.  For microstrain analysis (Eqn. 11 in the paper mentioned above), we need a
+single RMC6F configuration as the input. For the deformation gradient tensor
+analysis, we need the initial and fitted RMC6F configurations as inputs.
+
+The script has been embodied into the RMCProfile release package so that it can
+be simply executed as,
 
 .. code-block:: sh
 
     rmc_strain RMC6F_CONFIG [OPTIONS]
 
-The list of [OPTIONS] is presented below,
+For example, if we want to analyze the microstrain, we can type something like,
+
+.. code-block:: sh
+
+    rmc_strain -i ceriaNano_NP.rmc6f -t rms
+
+If we want to analyze deformation gradient tensor, we can type something like,
+
+.. code-block:: sh
+
+    rmc_strain -i ceriaNano_NP.rmc6f -t dgt -r ceriaNano_NP_init.rmc6f
+
+One can see a list of options by typing
+
+.. code-block:: sh
+
+    rmc_strain -h
+
+The full list of [OPTIONS] is presented below,
 
 -h  Show current help information.
 
@@ -24,6 +50,67 @@ The list of [OPTIONS] is presented below,
 
 -v  Show version information.
 
+The program will then ask some questions interactively during execution,
+
+a)  If 'rms' type of analysis is selected, the program will ask whether to do
+the shell analysis. Then it will ask whether this is for bulk when executing
+shell analysis. The program was originally designed for analyzing nanoparticle,
+and for the analysis we need to figure out the center and radius of the particle
+first. Sometimes, we may also want to run the program against bulk as well just
+to make sure, with some confidence, what we obtain from nanoparticle shell
+analysis is real. However, for bulk model, it may be tricky to figure out the
+center and radius, so we need extra input here.
+
+If we do want to do it for bulk,
+we need to first generate a nanoparticle model from the bulk configuration.
+To do this, we can use the 'bulk_shells.py' script in the 'NP_Shells' folder.
+The usage is similar to 'np_shells.py', and here we only need to generate one
+shell (by specifying 'by thickness' for particle generation and particle radius
+as the shell thickness), which is actually a nanoparticle in the center. Then we
+want to copy the 'shell_0.rmc6f' and 'np_shell_gen.log' to the same directory
+where we execute the 'rmc_strain.py' script.
+
+Then the program will ask the minimum number of cells in each shell. We may want
+to figure out an estimation based on the total number of cells information
+printed out in the log file (see list above).
+
+b) If 'dgt' type of analysis is selected, the program will ask for the cutoff
+(in angstrom) for the local deformation analysis. Usually, 10 angstrom should be
+good enough. This analysis will take a while since figuring out all neighbors
+for all atoms is time consuming.
+
+The output is described as follows, assuming the input fitted RMC6F
+configuration is with the name of 'ceriaNano_NP.rmc6f'.
+
+`Output if 'rms' mode selected`,
+
+------------------------------------------------------------
+
+ceriaNano_NP_#.log -- Overall microstrain result
+
+ceriaNano_NP_#_shells.log -- Microstrain for various shells.
+
+------------------------------------------------------------
+
+where '#' represents the smallest integer that is not already existing in the
+output file names.
+
+`Output if 'dgt' mode selected`,
+
+-------------------------------------------------------------------------
+
+ceriaNano_NP_dgt.out -- Deformation gradient tensor for each single atom.
+
+ceriaNano_NP_rot.out -- Rotation tensor for each single atom.
+
+ceriaNano_NP_strain.out -- Strain tensor for each single atom.
+
+ceriaNano_NP_strain_invar.out -- Strain invariants for each single atom.
+
+-------------------------------------------------------------------------
+
+Explanation for the output quantities can be again found in the paper,
+https://doi.org/10.1107/S1600576719000372.
 """
 #
 # -*- coding: utf-8 -*-
