@@ -3,6 +3,10 @@
 Installation
 ============
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
 :ref:`RMC Modules<rmc_modules>`
 -------------------------------
 
