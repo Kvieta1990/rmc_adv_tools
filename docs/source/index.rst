@@ -1,6 +1,6 @@
 .. RMCProfile advanced tools documentation master file, created by
    sphinx-quickstart on Fri 30-Apr-21.
-   
+
 Advanced analysis tools for RMCProfile
 ================================================================================
 
@@ -14,6 +14,7 @@ analysis tools for RMCProfile.
    install
    rmc_modules
    rmc_tools
+   ext_links
 
 ..
 	Indices and tables
