@@ -11,6 +11,11 @@ zhangy3@ornl.gov
 --------------------------
 *****************************************************************************
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Using macro for defining structure for various data sections WON'T work.
+We need to define structures explicitly in each data section.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 ---------------------------
 Tab-1: Profile Preparation
 -----------------------------------------------------------------------------
@@ -28,17 +33,20 @@ estimation for the scale factor through Rietveld refinement ANYWAY.
 Instructions
 -----------------------------------------------------------------------------
 1. In the input box, specify the refinement type ('1' for Rietveld, 
-'2' for Pawley) and minimum d-spacing (separated by ';'). Here the 
-Rietveld refinement is strongly recommended since it can provide the 
-necessary scale factor which will be used by RMCProfile. For the 
-minimum d-spacing input, if there are multiple data sections, one 
-needs to specify multiple values separated by commas. The third 
-input concerns whether to use a fine precision when outputing the 
-tabulated profile. Usually, using the default '0' (with the default
-precision) option should be fine. In case one needs a fine precision, 
-use '1' instead. The purpose of such an option is that when the 
-intensity of Bragg peaks is weak, using coarse precision will tend
-to introduce rounding-up uncertainties.
+'2' for Pawley), minimum d-spacing (separated by ';') and a third 
+parameter controlling the precision of output profile (more details
+will follow). Here the Rietveld refinement is strongly recommended
+since it can provide the necessary scale factor which will be used
+by RMCProfile. For the minimum d-spacing input, if there are multiple
+data sections, one needs to specify multiple values separated by
+commas. The third input concerns whether to use a fine precision
+when outputing the tabulated profile. Usually, using the default '0'
+(with the default precision) option should be fine. In case one
+needs a fine precision, use '1' instead. The intention of such an
+option is that when the intensity of Bragg peaks is weak, using
+fine precision will prevent the introduction of artifical features
+in RMCProfile calculation due to the rounding-up uncertainties in
+the output profile.
 
 2. Locate the installation directory of Topas, by pressing the 
 'Topas Installation Directory' button.
@@ -184,8 +192,8 @@ in RMCProfile to the same value, accordingly.
 the scale should not be set to be equal to a defined parameter!
 -----------------------------------------------------------------------------
 
-===============================
-Yuanpeng Zhang @ Wed 15-Jul-20
-ORNL & NIST
+==================================
+Yuanpeng Zhang @ Thu 1-Jul-21
+Neutron Scattering Scientist, ORNL
 zhangy3@ornl
-===============================
+==================================
