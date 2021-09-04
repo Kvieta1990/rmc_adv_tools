@@ -47,12 +47,12 @@ class cw_rm_thread(Thread):
     """Worker Thread Class."""
     def __init__(self, notify_window, i1, i2, i3, resMatDone,
                 dataSectList, content, topasDirSpec, topasInpSpec,
-                topasInpDir, topasExe):
+                topasExe, topasInp, topasInpDir, stemName, pi_threshold):
         """Init Worker Thread Class."""
         Thread.__init__(self)
         self._notify_window = notify_window
         self._want_abort = 0
-        
+
         self.i1 = i1
         self.i2 = i2
         self.i3 = i3
@@ -65,6 +65,7 @@ class cw_rm_thread(Thread):
         self.topasInp = topasInp
         self.topasInpDir = topasInpDir
         self.stemName = stemName
+        self.pi_threshold = pi_threshold
 
         # This starts the thread running on creation, but you could
         # also make the GUI thread responsible for calling this
@@ -74,7 +75,7 @@ class cw_rm_thread(Thread):
         i1Val = self.i1.GetValue()
         i2Val = self.i2.GetValue()
         i3Val = self.i3.GetValue()
-        self.resMatDone = False
+        self.resMatDone = True
         self.dataSectList = []
         self.content = []
         # Go ahead if all necessary input boxes are given values. Advanced features could
@@ -158,6 +159,38 @@ class cw_rm_thread(Thread):
                         self.content[line2Delete] = "\n"
                         break
                     line2Delete += 1
+
+            spg_pos = []
+            for i in range(len(self.content)):
+                if "space_group" in self.content[i]:
+                    spg_pos.append(i)
+            insertedNum = 0
+            for i in range(len(spg_pos)):
+                self.content.insert(4*insertedNum+spg_pos[i]+1,"load hkl_m_d_th2 I\n")
+                self.content.insert(4*insertedNum+spg_pos[i]+2,"{\n")
+                self.content.insert(4*insertedNum+spg_pos[i]+3, \
+                  "1   1   0   4    2.744190      32.55226     @  1000\n")
+                self.content.insert(4*insertedNum+spg_pos[i]+4,"}\n")
+                insertedNum += 1
+
+            if self._want_abort:
+                wx.PostEvent(self._notify_window, ResultEvent(None))
+                return
+
+            for i in range(len(self.content)):
+                if "Cubic(" in self.content[i]:
+                    self.content[i] = " \n"
+            for i in range(len(self.content)):
+                if "scale" in self.content[i]:
+                    if self.content[i].split()[0]=="scale":
+                        self.content[i] = " \n"
+
+            for i in range(len(self.content)):
+                if self.content[i].strip()=="str":
+                    self.content[i] = "hkl_Is\n"
+                if "site" in self.content[i] and "x" in self.content[i] and \
+                  "y" in self.content[i] and "z" in self.content[i]:
+                    self.content[i] = "\n"
 
             # Delete space group line if they exist. Therefore, this assumes a
             # successful Pawley refinement before running this program since we
@@ -365,6 +398,16 @@ class cw_rm_thread(Thread):
                 if self._want_abort:
                     wx.PostEvent(self._notify_window, ResultEvent(None))
                     return
+                scale_line = []
+                scale_line_num = 0
+                for i in range(len(self.content)):
+                    if self._want_abort:
+                        wx.PostEvent(self._notify_window, ResultEvent(None))
+                        return
+                    if "xdd" in self.content[i]:
+                        self.content[i] = "xdd \".\\dataTemp" + str(scale_line_num) + ".xye\"\n"
+                        scale_line_num += 1
+                        scale_line.append(i + scale_line_num)
                 if "neutron_data" in item:
                     neutronD = True
                     break
@@ -597,7 +640,7 @@ class cw_rm_thread(Thread):
                     return
                 print("\n=================== Processing data section " + str(i+1) + " ====================")
                 qarray = np.arange(i1Val,i3Val+i2Val,i2Val)
-                # resMatData = np.zeros((len(qarray),len(qarray)))
+                resMatData = np.zeros((len(qarray),len(qarray)))
                 # fig.append(plt.figure())
                 # fig[i].canvas.set_window_title("Data section-" + str(i + 1))
                 # ax.append(fig[i].add_subplot(111))
@@ -678,40 +721,45 @@ class cw_rm_thread(Thread):
                     # fig[i].canvas.draw()
 
                 # Get rid of all zeros in the sparse matrix to reduce the output file size.
+                for tempi in range(len(resMatData)):
+                    toSubtract = 0
+                    for tempj in range(len(resMatData[tempi])):
+                        if self._want_abort:
+                            wx.PostEvent(self._notify_window, ResultEvent(None))
+                            return
+                        if (resMatData[tempi][tempj]/sumTemp[tempi] < self.pi_threshold):
+                            toSubtract += resMatData[tempi][tempj]
+                            resMatData[tempi][tempj] = 0
+                    sumTemp[tempi] -= toSubtract
+
                 resMatRed = []
-                startPL = []
-                endPL = []
                 index = 0
                 for item in resMatData:
-                    resMatRed.append([x/sumTemp[index] for x in item if x != 0])
-                    startPFound = False
-                    endPFound = False
                     for k in range(len(item)):
                         if self._want_abort:
                             wx.PostEvent(self._notify_window, ResultEvent(None))
                             return
-                        if item[k] != 0 and not startPFound:
+                        if item[k] != 0:
+                            spTemp = k + 1
                             startPFound = True
-                            spTemp = k
-                        if item[k] == 0 and startPFound:
-                            endPFound = True
-                            epTemp = k - 1
                             break
-                    if startPFound and not endPFound:
-                        epTemp = len(qarray) - 1
-                    elif not startPFound and not endPFound:
-                        spTemp = -1
-                        epTemp = -1
+                    for k in range(len(item)):
+                        if self._want_abort:
+                            wx.PostEvent(self._notify_window, ResultEvent(None))
+                            return
+                        if item[-(k+1)] != 0:
+                            epTemp = len(item) - k
+                            endPFound = True
+                            break
+                    if not startPFound and not endPFound:
+                        spTemp = 0
+                        epTemp = 0
 
-                    if epTemp == -1:
-                        startPL.append(0)
-                        endPL.append(0)
-                    else:
-                        startPL.append(spTemp + 1)
-                        endPL.append(epTemp + 1)
+                    # The sumTemp array here is for normalizing the resolution matrix.
+                    resMatRed.append([x/sumTemp[index] for x in item[spTemp-1:epTemp]])
+                    resMatRed[index].insert(0,spTemp)
+                    resMatRed[index].insert(1,epTemp)
 
-                    resMatRed[index].insert(0,startPL[index])
-                    resMatRed[index].insert(1,endPL[index])
                     index += 1
 
                 resMatFile = open(os.path.join(self.topasInpDir, "res_matrix.dat"), "w")
@@ -722,7 +770,7 @@ class cw_rm_thread(Thread):
                         return
                     resMatFile.write("{0:8d}{1:8d}".format(resMatRed[j][0], resMatRed[j][1]))
                     for k in range(2, len(resMatRed[j])):
-                        resMatFile.write("{0:8.5F}".format(resMatRed[j][k]))
+                        resMatFile.write("{0:11.6F}".format(resMatRed[j][k]))
                     resMatFile.write("\n")
                 resMatFile.close()
 
@@ -742,9 +790,10 @@ class cw_rm_thread(Thread):
                 log_file.write("Topas executable: " + self.topasExe + "\n")
                 log_file.write("Topas working directory: " + self.topasInpDir + "\n")
                 log_file.write("Topas input file: " + self.stemName + ".inp" + "\n")
-                log_file.write("Input box-1: " + i1 + "\n")
-                log_file.write("Input box-2: " + i2 + "\n")
-                log_file.write("Input box-3: " + i3 + "\n")
+                log_file.write("Input box-1: " + str(i1Val) + "\n")
+                log_file.write("Input box-2: " + str(i2Val) + "\n")
+                log_file.write("Input box-3: " + str(i3Val) + "\n")
+                log_file.write("Profile intensity threshold: " + str(self.pi_threshold) + "\n")
                 log_file.write("=====================================================")
             else:
                 log_file = open(os.path.join(self.topasInpDir, "res_matrix.hist"), "w+")
@@ -755,9 +804,10 @@ class cw_rm_thread(Thread):
                 log_file.write("Topas executable: " + self.topasExe + "\n")
                 log_file.write("Topas working directory: " + self.topasInpDir + "\n")
                 log_file.write("Topas input file: " + self.stemName + ".inp" + "\n")
-                log_file.write("Input box-1: " + i1 + "\n")
-                log_file.write("Input box-2: " + i2 + "\n")
-                log_file.write("Input box-3: " + i3 + "\n")
+                log_file.write("Input box-1: " + str(i1Val) + "\n")
+                log_file.write("Input box-2: " + str(i2Val) + "\n")
+                log_file.write("Input box-3: " + str(i3Val) + "\n")
+                log_file.write("Profile intensity threshold: " + str(self.pi_threshold) + "\n")
                 log_file.write("=====================================================")
             
             log_file.close()
@@ -3274,11 +3324,11 @@ class PageRMCW(wx.Panel):
         self.exitButton.Bind(wx.EVT_BUTTON, self.cleanExit)
 
         self.abortButton = wx.Button(self, wx.ID_ANY, u"Abort",
-                                    wx.DefaultPosition, wx.DefaultSize, 0)
+                                     wx.DefaultPosition, wx.DefaultSize, 0)
         self.abortButton.Bind(wx.EVT_BUTTON, self.OnStop)
 
         self.loadHistButton = wx.Button(self, wx.ID_ANY, u"Load history",
-                                    wx.DefaultPosition, wx.DefaultSize, 0)
+                                        wx.DefaultPosition, wx.DefaultSize, 0)
         self.loadHistButton.Bind(wx.EVT_BUTTON, self.read_hist)
 
         fgSizerSub1.AddMany([(fgSizerSub11, 1, wx.EXPAND),
@@ -3325,6 +3375,8 @@ class PageRMCW(wx.Panel):
 
         # And indicate we don't have a worker thread yet
         self.cw_rm_worker = None
+
+        self.pi_threshold_hist = None
 
     def OnStop(self, event):
         if self.cw_rm_worker:
@@ -3442,6 +3494,10 @@ class PageRMCW(wx.Panel):
             self.i1.SetValue(hist_file_lines[last_pos + 5].split("box-1:")[1].strip())
             self.i2.SetValue(hist_file_lines[last_pos + 6].split("box-2:")[1].strip())
             self.i3.SetValue(hist_file_lines[last_pos + 7].split("box-3:")[1].strip())
+            try:
+                self.pi_threshold_hist = hist_file_lines[last_pos + 8].split("threshold:")[1].strip()
+            except Exception:
+                print("No profile threshold history found. Will bring up the input box.\n")
         except Exception:
             wx.LogError('Failed to open history file!')
             raise
@@ -3451,13 +3507,24 @@ class PageRMCW(wx.Panel):
     # Generate the resolution matrix.
     def resMatrixPrep(self, event):
         sys.stdout = self.sysOutText
+        if self.pi_threshold_hist is None:
+            frame = wx.Frame(None, -1, 'win.py')
+            frame.SetDimensions(0,0,200,50)
+            dlg = wx.TextEntryDialog(frame, 'Enter threshold for profile intensity','Text Entry')
+            dlg.SetValue("1E-4")
+            if dlg.ShowModal() == wx.ID_OK:
+                print('Profile intensity smaller than %s will be treated as 0.\n' % dlg.GetValue())
+            dlg.Destroy()
+            pi_threshold = float(dlg.GetValue())
+        else:
+            pi_threshold = float(self.pi_threshold_hist)
         try:
             if not self.cw_rm_worker and self.topasDirSpec and self.topasInpSpec:
                 self.cw_rm_worker = cw_rm_thread(self, self.i1, self.i2, self.i3,
                     self.resMatDone, self.dataSectList, self.content,
                     self.topasDirSpec, self.topasInpSpec, self.topasExe, 
-                    self.topasInp, self.topasInpDir)
-                self.resMatDone = self.cw_rm_worker.resMatDone
+                    self.topasInp, self.topasInpDir, self.stemName, pi_threshold)
+                self.resMatDone = True
             else:
                 if not self.topasDirSpec or not self.topasInpSpec:
                     wx.LogError('Please specify Topas executable and input file first!')
