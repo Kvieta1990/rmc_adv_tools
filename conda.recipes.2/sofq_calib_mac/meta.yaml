@@ -1,21 +1,21 @@
 package:
   name: sofq_calib
-  version: 1.0.0
+  version: 1.0.1
 
 build:
-  number: 8
+  number: 9
 
 source:
-  path: /mnt/d/Dev/Utilities/sofq_calib_mac
+  path: /Users/y8z/Dev/rmc_adv_tools/sofq_calib_mac
 
 requirements:
   build:
-    - python >=3.7.0
+    - python >=3.6.0
     - wxpython >=4.0
     - numpy
     - matplotlib >=3.0
   run:
-    - python >=3.7.0
+    - python >=3.6.0
     - wxpython >=4.0
     - numpy
     - matplotlib >=3.0
