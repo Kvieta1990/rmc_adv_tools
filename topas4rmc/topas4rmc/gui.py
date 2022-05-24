@@ -1460,7 +1460,7 @@ class profile_thread(Thread):
                                         wx.PostEvent(self._notify_window, ResultEvent(None))
                                         return
                                     strTemp = inpFileOut[self.dataSectList[
-                                        dataSecI].hklSP[PawleySecI] + k]
+                                        dataSecI].hklIsPos[PawleySecI] + k]
                                     if ("scale" in strTemp) and (strTemp.lstrip()[0] != "'"):
                                         if "@" in strTemp:
                                             scale[i].append(float(strTemp.split()[2].split('`')[0].split('_')[0]))
