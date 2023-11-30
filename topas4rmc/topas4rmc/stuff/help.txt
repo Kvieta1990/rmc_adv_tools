@@ -27,7 +27,8 @@ BEFORE USING IT, one needs to get a reasonally good fit with either
 Rietveld or Pawley. However, reliable scale factor can only be 
 obtained through Rietveld refinement. Therefore, if one does want
 to use Pawley refinement as the input, one has to have a reliable 
-estimation for the scale factor through Rietveld refinement ANYWAY.
+estimation for the scale factor through Rietveld refinement or
+one can choose to fit scale when fitting the Bragg data.
 *****************************************************************************
 
 Instructions
@@ -35,18 +36,24 @@ Instructions
 1. In the input box, specify the refinement type ('1' for Rietveld, 
 '2' for Pawley), minimum d-spacing (separated by ';') and a third 
 parameter controlling the precision of output profile (more details
-will follow). Here the Rietveld refinement is strongly recommended
-since it can provide the necessary scale factor which will be used
-by RMCProfile. For the minimum d-spacing input, if there are multiple
-data sections, one needs to specify multiple values separated by
-commas. The third input concerns whether to use a fine precision
-when outputing the tabulated profile. Usually, using the default '0'
-(with the default precision) option should be fine. In case one
-needs a fine precision, use '1' instead. The intention of such an
-option is that when the intensity of Bragg peaks is weak, using
-fine precision will prevent the introduction of artifical features
-in RMCProfile calculation due to the rounding-up uncertainties in
-the output profile.
+will follow). Only the Rietveld refinement is going to give a scale
+factor that is transferrable to RMCProfile so if one is not going
+to fit the scale in RMCProfile for the Bragg data, Rietveld
+refinement is for sure necessary. When using the Pawley refinement,
+one should keep in mind that the exact hkl peak list in Topas will
+be used in RMCProfile. So, if one is expecting to constraint the
+average structure in RMCProfile using the exact symmetry used in
+Topas, one should make sure the hkl list in Topas should be
+generated according to the symmetry that we want to apply. For the
+minimum d-spacing input, if there are multiple data sections, one
+needs to specify multiple values separated by commas. The third
+input concerns whether to use a fine precision when outputing the
+tabulated profile. Usually, using the default '0' (with the default
+precision) option should be fine. In case one needs a fine precision,
+use '1' instead. The intention of such an option is that when the
+intensity of Bragg peaks is weak, using fine precision will prevent
+the introduction of artifical features in RMCProfile calculation
+due to the rounding-up uncertainties in the output profile.
 
 2. Locate the installation directory of Topas, by pressing the 
 'Topas Installation Directory' button.
@@ -114,6 +121,11 @@ reference.
 
 6. The generated resolution matrix will be saved to 'res_matrix.dat' 
 file.
+
+7. Refer to the RMCProfile manual available at rmcprofile.ornl.gov
+(see Appendix-F) for an extra step to add in a header line to the
+generated resolution matrix. We cannot add it here automatically
+since it requires some information from the experimental data.
 -----------------------------------------------------------------------------
 
 ------------------------------
@@ -132,12 +144,21 @@ with user's samples.
 Instructions
 -----------------------------------------------------------------------------
 1. In the first input box, specify the Qmin, Qstep and Qmax spearated 
-by commas. The input values should agree with that used in RMCProfile. 
-Then, one needs one additional input value for specifying the q-grid type.
-Here, '0' represents the default data grid. Otherwise, the q-grid specified 
-(e.g. 0.005) by user will be used for building up the resolution matrix.
+by commas. The Qmin and Qstep values should agree with that of the
+reciprocal space data to be used in RMCProfile, if one does want to
+include the reciprocal space data in the fitting. Otherwise, the Qmin
+value can be chosen to whatever a reasonable value, as the Q-space
+grid will be constructed according to whatever parameters we put
+here, in this situation. The Qmax value should be equal to or
+greater than the Qmax value in the experimental data. Then, one
+needs one additional input value for specifying the q-grid type.
+Here, '0.005' means the Q bin size for the profile generation
+and we normally recommend keeping this value as it is. If '0' is
+used, that means we will be using the same Q bin as in the
+experimental data of the Si standard being used here. We are not
+supporting this option so simply '0' option should NOT be used here.
 
-In the second input box, specify the indeces of data sections. Sometimes
+In the second input box, specify the index of data sections. Sometimes
 we may want to separate one bank into multiple sections for the 
 refinement and this input box is for such a purpose. To explain the 
 usage, we take the following example "1;2;2,3,4,15.00;5;6". In this 

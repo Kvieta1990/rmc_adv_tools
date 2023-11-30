@@ -3615,7 +3615,7 @@ class PageRMTOF(wx.Panel):
         self.l1 = wx.StaticText(
             self, wx.ID_ANY, u"Q_Grid", wx.DefaultPosition, wx.DefaultSize,
             wx.ALIGN_CENTRE_HORIZONTAL)
-        self.i1 = wx.TextCtrl(self, wx.ID_ANY, u"0.01,0.01,30.0,0",
+        self.i1 = wx.TextCtrl(self, wx.ID_ANY, u"0.5,0.005,30.0,0.005",
                               wx.DefaultPosition, wx.DefaultSize)
 
         self.l11 = wx.StaticText(self, wx.ID_ANY, u"Data_Sections",

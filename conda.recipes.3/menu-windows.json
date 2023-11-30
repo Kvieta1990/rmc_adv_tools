@@ -1,16 +1,15 @@
 {
     "menu_name": "Anaconda${PY_VER} ${PLATFORM}",
-    "menu_items":
-	[
-		{
-			"name": "Topas4RMC",
-			"pywscript" : "${PYTHON_SCRIPTS}/topas4rmc-script.pyw",
-			"icon": "${MENU_DIR}/tr_icon.ico",
-			"desktop": true
-		},
-		{
-            "name" : "Topas4RMC Examples",
-            "webbrowser" : "${PREFIX}/@TOPAS4RMCBASE@/examples"
+    "menu_items": [
+        {
+            "name": "Topas4RMC",
+            "pywscript": "${PYTHON_SCRIPTS}/topas4rmc-script.pyw",
+            "icon": "${MENU_DIR}/tr_icon.ico",
+            "desktop": true
+        },
+        {
+            "name": "Topas4RMC Examples",
+            "webbrowser": "${PREFIX}/topas4rmc/examples"
         }
     ]
 }
