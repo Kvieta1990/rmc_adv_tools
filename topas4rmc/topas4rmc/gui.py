@@ -87,16 +87,7 @@ class cw_rm_thread(Thread):
             i3Val = float(i3Val)
             print("====================== Initial Topas running ======================")
             print("==================== Topas subprocess started =====================\n")
-            proc = sp.Popen(
-                [
-                    self.topasExe, self.topasInp
-                ],
-                shell=False,
-                stdin=subprocess.PIPE,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE
-            )#, stdout=sp.DEVNULL, stderr=sp.STDOUT)
-            proc.communicate()
+            sp.call([self.topasExe, self.topasInp])#, stdout=sp.DEVNULL, stderr=sp.STDOUT)
             print("==================== Topas subprocess ended ======================")
             print("============= Initial Topas running" +
                   " successfully executed =================\n")
@@ -932,16 +923,7 @@ class profile_thread(Thread):
                     # Initial run for testing.
                     print("====================== Initial Topas running ======================")
                     print("==================== Topas subprocess started =====================\n")
-                    proc = sp.Popen(
-                        [
-                            self.topasExe, tempInpFN
-                        ],
-                        shell=False,
-                        stdin=subprocess.PIPE,
-                        stdout=subprocess.PIPE,
-                        stderr=subprocess.PIPE
-                    )#, stdout=sp.DEVNULL, stderr=sp.STDOUT)
-                    proc.communicate()
+                    sp.call([self.topasExe, tempInpFN])#, stdout=sp.DEVNULL, stderr=sp.STDOUT)
                     print("==================== Topas subprocess ended ======================")
                     print("============= Initial Topas running" +
                           " successfully executed =================\n")
@@ -1307,16 +1289,7 @@ class profile_thread(Thread):
 
                 print("===================== Initial Topas running =======================")
                 print("=================== Topas subprocess started ======================\n")
-                proc = sp.Popen(
-                    [
-                        self.topasExe, os.path.join(self.topasInpDir, "init_check.inp")
-                    ],
-                    shell=False,
-                    stdin=subprocess.PIPE,
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE
-                )#, stdout=sp.DEVNULL, stderr=sp.STDOUT)
-                proc.communicate()
+                sp.call([self.topasExe, os.path.join(self.topasInpDir, "init_check.inp")])#,
                         #stdout=sp.DEVNULL, stderr=sp.STDOUT)
                 print("\n==================== Topas subprocess ended ======================")
                 print("=============== Initial Topas running " +
@@ -1387,16 +1360,8 @@ class profile_thread(Thread):
                     # Extracting the background.
                     print("====================== Extract background =======================")
                     print("==================== Topas subprocess started =====================\n")
-                    proc = sp.Popen(
-                        [
-                            self.topasExe, os.path.join(self.topasInpDir, "bkg_extract.inp")
-                        ],
-                        shell=False,
-                        stdin=subprocess.PIPE,
-                        stdout=subprocess.PIPE,
-                        stderr=subprocess.PIPE
-                    )#, stdout=sp.DEVNULL, stderr=sp.STDOUT)
-                    proc.communicate()
+                    sp.call([self.topasExe, os.path.join(self.topasInpDir, "bkg_extract.inp")])#,
+                            #stdout=sp.DEVNULL, stderr=sp.STDOUT)
                     print("\n==================== Topas subprocess ended ======================")
                     print("================= Background successfully executed ===================\n")
 
