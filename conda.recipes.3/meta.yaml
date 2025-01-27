@@ -14,7 +14,7 @@ entry_points:
 osx_is_app: True
 
 app:
-  entry: pythonw -m topas4rmc.topas4rmc
+  entry: python -m topas4rmc.topas4rmc
   icon: tr_icon.ico
   summary: Prepare Bragg profile for RMC fit.
 
